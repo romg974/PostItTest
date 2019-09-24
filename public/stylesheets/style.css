@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #eee;
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.postit{
+  width: 195px;
+  height: 195px;
+  background-color: #ffa;
+  font-family: Pacifico;
+  float:left;
+  margin: 10px;
+  padding: 10px;
+  font-size: 22pt;
+  box-shadow: 2px 2px #00000022;
+}
+
+.postit:nth-child(1n){
+  transform: rotate(1deg);
+}
+
+.postit:nth-child(2n){
+  transform: rotate(-2deg);
+}
+
+.postit:nth-child(3n){
+  transform: rotate(3deg);
+}
+
+.postit textarea{
+  background: none;
+  border: none;
+}
+
+#acces_code{
+  clear:both;
+  text-align: center;
+}

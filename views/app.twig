@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CFTest</title>
+    </head>
+    <body>
+        <div id="login">
+            Ton blaze :
+            <input type="text" id="username" />
+            <button onclick="login();">OK</button>
+        </div>
+        <div id="interface" style="display:none">
+            <h1 id="blaze"></h1>
+            <div class="postit">
+                <textarea name="" id="content"></textarea>
+                <button onclick="send()">SEND</button>
+            </div>
+        </div>
+
+        <script src="/javascripts/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost:3000');
+            var username;
+
+
+            socket.on('news', function (data) {
+                console.log(data);
+                socket.emit('my other event', { my: 'data' });
+            });
+
+            function login(){
+                username = document.getElementById('username').value;
+                document.getElementById('blaze').innerText = username;
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('interface').style.display = 'block';
+            }
+
+            function send(){
+                var content = document.getElementById('content');
+                socket.emit('postit', { content: content.value });
+                content.value = '';
+            }
+        </script>
+    </body>
+</html>
